@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, RegistrationForm, BookForm
+from .forms import LoginForm, RegistrationForm, BookForm, EventForm
 from django.contrib import messages
 from .models import Book
 
@@ -13,6 +13,20 @@ from .models import Book
 def index(request):
     books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
     return render(request, 'main/index.html', {'books': books})
+
+def add_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            # Если организатор должен быть текущим пользователем, то:
+            event.organizer = request.user
+            event.save()
+            form.save_m2m()  # сохраняем данные для ManyToMany поля, если есть
+            return redirect('profile')  # или другой URL по вашему выбору
+    else:
+        form = EventForm()
+    return render(request, 'events/add_event.html', {'event_form': form})
 
 
 def login_view(request):

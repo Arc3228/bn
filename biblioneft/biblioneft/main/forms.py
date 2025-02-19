@@ -1,14 +1,20 @@
 from datetime import date
 import re
 from django import forms
-from .models import User, Book, Event
 from django.core.exceptions import ValidationError
-from .models import User, Book
+from .models import User, Book, Event
 
 
 class LoginForm(forms.Form):
-    phone = forms.CharField(label="Телефон", max_length=18, widget=forms.TextInput(attrs={"placeholder": 'Номер телефона', "id": 'tel'}))
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": 'Введите пароль'}))
+    phone = forms.CharField(
+        label="Телефон",
+        max_length=18,
+        widget=forms.TextInput(attrs={"placeholder": 'Номер телефона', "id": 'tel'})
+    )
+    password = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={"placeholder": 'Введите пароль'})
+    )
 
 
 class ValidationError(Exception):
@@ -16,9 +22,13 @@ class ValidationError(Exception):
 
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"}))
+    password = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={"placeholder": "Введите пароль"})
+    )
     password_confirm = forms.CharField(
-        label="Подтверждение пароля", widget=forms.PasswordInput(attrs={"placeholder": "Подтвердите пароль"})
+        label="Подтверждение пароля",
+        widget=forms.PasswordInput(attrs={"placeholder": "Подтвердите пароль"})
     )
 
     class Meta:
@@ -248,6 +258,28 @@ class EventForm(forms.ModelForm):
             'description',
             'event_type',
             'start_date',
+            'location',
             'organizer',
+            'participants',
+            'max_participants',
+            'is_active',
         ]
-
+        widgets = {
+            # HTML5-виджет для выбора даты и времени
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            # Текстовое поле с несколькими строками для описания
+            'description': forms.Textarea(attrs={'rows': 4}),
+            # Множественный выбор в виде чекбоксов для участников
+            'participants': forms.CheckboxSelectMultiple(),
+        }
+        labels = {
+            'title': 'Название мероприятия',
+            'description': 'Описание',
+            'event_type': 'Тип мероприятия',
+            'start_date': 'Дата и время начала',
+            'location': 'Место проведения',
+            'organizer': 'Организатор',
+            'participants': 'Участники',
+            'max_participants': 'Максимальное количество участников',
+            'is_active': 'Активно',
+        }

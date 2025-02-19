@@ -10,6 +10,7 @@ urlpatterns = [
     path("registration/", views.registration_view, name="registration"),
     path("profile/", views.profile_view, name="profile"),
     path('add_book/', views.add_book_view, name='add_book'),
+    path('add-event/', views.add_event_view, name='add_event'),
     path("books/", views.profile_view, name="books"),
     path("logout/", LogoutView.as_view(), name='logout'),
     path("chit-zal/", views.chit_zal, name='chit-zal'),
