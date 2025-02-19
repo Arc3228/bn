@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+<!-- Подключение библиотеки Inputmask -->
+{% block content %}
+
+<h2 class="reg_auth_title">Регистрация</h2>
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Остальные поля формы -->
+    {{ form.surname }}
+    <div class="invalid-feedback">
+        Фамилия должна содержать только русские буквы
+    </div>
+    {{ form.name }}
+    <div class="invalid-feedback">
+        Имя должно содержать только русские буквы
+    </div>
+    {{ form.lastname }}
+    <div class="invalid-feedback">
+        Отчество должно содержать только русские буквы
+    </div>
+    {{ form.date_of_birth }}
+    {{ form.education }}
+    {{ form.prof }}
+    {{ form.study_work }}
+    {{ form.phone }}
+    <div class="invalid-feedback">
+        Телефон должен быть в формате +7 (999) 999-99-99
+    </div>
+    {{ form.passport }}
+    <div class="invalid-feedback">
+        Паспортные данные должны состоять из 10 цифр.
+    </div>
+    {{ form.given }}
+    <!-- Поле пароля -->
+    <div class="form-group">
+        {{ form.password.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password', 'toggle-password-btn')">
+                <i class="fas fa-eye"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Поле подтверждения пароля -->
+    <div class="form-group">
+        {{ form.password_confirm.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password_confirm }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password_confirm', 'toggle-password-confirm-btn')">
+                <i class="fas fa-eye"></i>
+            </button>
+        </div>
+    </div>
+    <button class="reg_btn" type="submit">Зарегистрироваться</button>
+    <div class="checkbox">
+        <input class="terms" type="checkbox" name="terms" id="terms" required>
+        <label class="terms" for="terms">Я даю согласие на обработку персональных данных</label>
+    </div>
+    <p class="have_acc">Уже есть аккаунт? <a class="reg_to_auth" href="{% url 'login' %}">Войти в аккаунт</a></p>
+</form>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("input, select, textarea");
+
+        fields.forEach(field => {
+            field.addEventListener("input", function () {
+                if (field.checkValidity()) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                }
+            });
+            field.addEventListener("blur", function () {
+                if (!field.checkValidity()) {
+                    field.classList.add("is-invalid");
+                }
+            });
+        });
+    });
+
+    // Функция для блокировки латиницы
+    function blockLatinInput(event) {
+        const input = event.target;
+        const value = input.value;
+
+        // Регулярное выражение для проверки на кириллицу
+        const cyrillicPattern = /^[А-Яа-яЁё\s]+$/;
+
+        // Если введённый символ не соответствует кириллице, удаляем его
+        if (!cyrillicPattern.test(value)) {
+            input.value = value.replace(/[^А-Яа-яЁё\s]/g, '');
+        }
+    }
+
+    // Применяем функцию к нужным полям
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("#id_surname, #id_name, #id_lastname", "#id_edu", "#id_prof", "#id_sw", "#id_given");
+
+        fields.forEach(field => {
+            field.addEventListener("input", blockLatinInput);
+            field.addEventListener("blur", blockLatinInput);
+        });
+    });
+
+    $(document).ready(function(){
+        $('#tel').mask('+7 (999) 999-99-99');
+    });
+
+    // Инициализация маски для паспорта
+    $(document).ready(function(){
+        $('#passport').mask('0000 000000');
+    });
+
+    console.log(Inputmask); // Должен вывести функцию Inputmask
+
+    function togglePasswordVisibility(inputId) {
+        const input = document.getElementById(inputId);
+        const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+
+        if (input.type === "password") {
+            input.type = "text";
+            button.classList.remove('fa-eye');
+            button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+        } else {
+            input.type = "password";
+            button.classList.remove('fa-eye-slash');
+            button.classList.add('fa-eye'); // Иконка "глаз открыт"
+        }
+    }
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: Unbounded;
+color: #03030A;
+}
+
+.container {
+overflow: hidden;
+max-width: 1760px;
+padding: 0 20px;
+margin: 0 auto;
+}
+
+.wrapper {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+a {
+text-decoration: none;
+}
+
+/* ШАПКА */
+
+.header {
+background-color: #03030A;
+}
+
+.logo {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+
+.nav {
+display: flex;
+flex-direction: column;
+gap: 50px;
+}
+
+.nav ul {
+display: flex;
+align-content: center;
+gap: 25px;
+}
+
+.nav ul li {
+list-style: none;
+}
+
+.nav ul li select {
+display: none;
+}
+
+.odd {
+cursor: pointer;
+transition: .3s;
+color: #F3F3F3;
+}
+
+.odd:hover {
+color: #C7B475;
+}
+
+.search-bar input{
+width: 450px;
+border: #C7B475 3px solid;
+border-radius: 5px;
+background: #F3F3F3;
+font-size: 16px;
+position: absolute;
+outline: none;
+padding:  5px 10px;
+}
+
+.search-bar img {
+position: relative;
+left: 420px;
+top: 7px;
+
+}
+
+.search-bar input::placeholder {
+color: #A4A4A4;
+font-size: 16px;
+}
+
+.reg-group {
+display: flex;
+gap: 20px;
+padding-bottom: 25px;
+}
+
+.reg-group a{
+background: #255727;
+padding: 5px 15px;
+border-radius: 10px;
+display: block;
+color: #F3F3F3;
+}
+
+.reg-group .chit {
+width: 137px;
+text-align: center;
+color: #F3F3F3;
+}
+
+.reg-group .user {
+width: 70px;
+}
+
+.contacts {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.contacts a {
+color: #F3F3F3;
+display: flex;
+gap: 5px;
+align-items: center;
+}
+
+/* РЕГИСТРАЦИЯ/АВТОРИЗАЦИЯ */
+
+.reg_auth_title {
+text-align: center;
+font-size: 24px;
+padding: 50px 0;
+}
+
+form {
+display: flex;
+flex-direction: column;
+margin: 0 auto;
+max-width: 455px;
+gap: 10px;
+}
+
+label {
+display: none;
+}
+
+form input, form textarea, form select {
+border: 3px solid #C7B475;
+background: #f3f3f3;
+outline: none;
+border-radius: 5px;
+padding: 5px 10px;
+width: 450px;
+}
+
+form input::placeholder {
+color: #A4A4A4;
+}
+
+.reg_btn {
+align-self: center;
+padding: 15px 5px;
+max-width: 220px;
+border: none;
+border-radius: 5px;
+background: #255727;
+color: #F3F3F3;
+font-size: 16px;
+}
+
+.checkbox {
+display: flex;
+gap: 10px;
+width: inherit;
+}
+
+.checkbox input {
+width: 15px;
+}
+
+.terms {
+display: block;
+font-size: 12px;
+}
+
+.have_acc {
+font-size: 12px;
+}
+
+.reg_to_auth {
+color: #C7B475;
+}
+
+.page_title {
+padding-top: 25px;
+}
+
+/* ГЛАЗИК */
+
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    z-index: 99999;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666; /* Цвет иконки */
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+/* Эффект при наведении на кнопку */
+.toggle-password:hover {
+    color: #007bff; /* Изменение цвета иконки при наведении */
+}
+
+/* Эффект при нажатии на кнопку */
+.toggle-password:active {
+    transform: scale(0.9); /* Легкое уменьшение кнопки при нажатии */
+}
+
+.is-valid {
+        border-color: #28a745 !important; /* Зеленая рамка для валидных полей */
+    }
+
+    .is-invalid {
+        border-color: #dc3545 !important; /* Красная рамка для невалидных полей */
+    }
+
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+    }
+
+    .is-invalid + .invalid-feedback {
+        display: block;
+    }
+
+.desc_title{
+color: #255727;
+font-size: 36px;
+text-align: center;
+margin-top: 75px;
+}
+
+.bn_desc {
+margin: 0 auto;
+margin-top: 25px;
+text-align: justify;
+width: 1020px;
+font-size: 18px;
+font-weight: 500;
+}
+
+/* СЛАЙДЕРЫ */
+
+.mySwiper1 {
+margin-top: 50px;
+border-top-left-radius: 50px;
+border-bottom-right-radius: 50px;
+}
+
+.swiper-slide, .book_cards {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.events_head {
+margin-top: 100px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.events_title, .pages_title {
+font-size: 36px;
+}
+
+.events_link, .django_link {
+color: #B69F56;
+font-size: 18px;
+font-weight: 500;
+}
+
+.arrows {
+margin-top: 50px;
+display: flex;
+justify-content: space-between;
+z-index: 99999999;
+}
+
+.mySwiper2, .mySwiper3 {
+margin-top: 20px;
+}
+
+.events .swiper-slide, .books .swiper-slide, .book_card {
+border: 2px #C7B475 solid;
+border-radius: 5px;
+height: 470px;
+width: 320px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+width: 30px;
+height: 30px;
+margin-top: -260px;
+}
+
+.mySwiper2 .swiper-slide, .book_card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide::before, .book_card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide:hover::before, .book_card:hover::before {
+    opacity: 1;
+}
+
+.book-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mySwiper2 .swiper-slide:hover .book-info, .book_card:hover .book-info {
+    opacity: 1;
+}
+
+.book_title_link {
+font-size: 18px;
+font-weight: 500;
+}
+
+/* ПРОФИЛЬ */
+
+.name {
+font-size: 36px;
+font-weight: 700;
+padding-top: 50px;
+padding-bottom: 15px;
+}
+
+.logout_btn {
+color: #F3F3F3;
+background: #dc3545;
+padding: 5px 10px;
+border-radius: 5px;
+}
+
+.form_title {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.your_books {
+margin-bottom: 15px;
+}
+
+.no_books {
+margin-bottom: 20px;
+}
+
+/* СТРАНИЦЫ ПРОСТРАНСТВ */
+
+.pages_title {
+margin-bottom: 20px;
+}
+
+.pages_first_line {
+margin-top: 50px;
+}
+
+.pages_first_line, .pages_second_line, .pages_img_big {
+margin-bottom: 50px;
+}
+
+.pages_first_line, .pages_second_line {
+display: flex;
+gap: 30px;
+}
+
+.pages_par1, .pages_par2 {
+max-width: 1020px;
+}
+
+.pages_par1{
+margin-bottom: 20px;
+}
+
+.pages_list li {
+list-style-type: "- ";
+}
+
+.books_title {
+margin-top: 50px;
+}
+
+.book_cards {
+gap: 30px;
+margin-top: 50px;
+}

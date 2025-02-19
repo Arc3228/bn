@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/color-logo.svg' %}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title>БиблиоНефть</title>
+</head>
+<body>
+  <header class = "header">
+    <div class="container wrapper">
+      <div class="logo">
+        <a href = "{% url 'home' %}"><img src="{% static 'images/white-logo.svg' %}" alt="logo"></a>
+      </div>
+        <nav class="nav">
+            <ul>
+                <li><p class="odd" onclick="openDropdown">О библиотеке</p>
+                    <select>
+                        <option value="История библиотеки"><a href="#">История библиотеки</a></option>
+                        <option value="Гранты"><a href="#">Гранты</a></option>
+                        <option value="Проекты"><a href="#">Проекты</a></option>
+                    </select>
+                </li>
+                <li><p class="odd" onclick="openDropdown">Пространства</p>
+                    <select>
+                        <option value="Читальный зал"><a href="{% url 'chit-zal' %}">Читальный зал</a></option>
+                        <option value="Проектный офис"><a href="{% url 'office' %}">Проектый офис</a></option>
+                        <option value="Тайм-кафе"><a href="{% url 'cafe' %}">Тайм-кафе</a></option>
+                        <option value="Лекторий"><a href="{% url 'lecktoriy' %}">Лекторий</a></option>
+                    </select>
+                </li>
+                <li><p class="odd" onclick="openDropdown">Читателям</p>
+                    <select>
+                        <option value="Как записаться"><a href="#">Как записаться</a></option>
+                        <option value="График работы"><a href="#">График работы</a></option>
+                        <option value="Фото-обзор"><a href="#">Фото-обзор</a></option>
+                    </select>
+                </li>
+                <li><a class="odd" href="https://neftche.ru/">ДК "Нефтьче"</a></li>
+            </ul>
+            <div class="search">
+                <div class="search-bar">
+                        <input type="text" placeholder="Поиск по сайту"> <img src="{% static 'images/search.svg' %}" alt="search-icon">
+                </div>
+            </div>
+        </nav>
+        <div class="reg">
+            <div class="reg-group">
+                <a class="chit" href="#">Стать читателем</a>
+                {% if request.user.is_authenticated %}
+                    <a class="user" href="{% url 'profile' %}"><img src="{% static 'images/user.svg' %}" alt=""></a>
+                {% else %}
+                    <a class="user" href="{% url 'registration' %}"><img src="{% static 'images/user.svg' %}" alt=""></a>
+                {% endif %}
+            </div>
+            <div class="contacts">
+                <a href="#">biblioneft@rambler.ru <img src="{% static 'images/mail.svg' %}" alt=""></a>
+                <a href="#">+7 (8553) 32-70-50 <img src="{% static 'images/phone-call.svg' %}" alt=""></a>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <main>
+      {% block content %}
+
+      {% endblock %}
+  </main>
+<script>
+
+</script>
+</body>
+</html>

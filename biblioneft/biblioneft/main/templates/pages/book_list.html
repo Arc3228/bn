@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="books_title">Каталог книг</h1>
+    <div class="book_cards">
+        <div class="book_card">
+            {% for book in books %}
+              <div class="swiper-slide"
+                   style="background-image: url('{{ book.image_book.url }}');">
+                  <div class="book-info">
+                      <a  href="#" class="book_title_link">{{ book.title }}</a>
+                      <p>{{ book.author }}</p>
+                  </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="reg_auth_title">Авторизация</h2>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.phone }}
+    <div class="invalid-feedback">
+        Телефон должен быть в формате +7 (999) 999-99-99
+    </div>
+    <div class="form-group">
+        {{ form.password.label_tag }}
+        <div class="password-wrapper">
+            {{ form.password }}
+            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('id_password', 'toggle-password-btn')">
+                <i class="fas fa-eye"></i>
+            </button>
+        </div>
+    </div>
+    <button class="reg_btn" type="submit">Войти</button>
+    <p class="have_acc">Еще нет аккаунта? <a class="reg_to_auth" href="{% url 'registration' %}">Зарегистрироваться</a></p>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("input, select, textarea");
+
+        fields.forEach(field => {
+            field.addEventListener("input", function () {
+                if (field.checkValidity()) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                }
+            });
+            field.addEventListener("blur", function () {
+                if (!field.checkValidity()) {
+                    field.classList.add("is-invalid");
+                }
+            });
+        });
+    });
+
+<!--    $(document).ready(function(){-->
+<!--        $('#tel').mask('+7 (999) 999-99-99');-->
+<!--    });-->
+
+    function togglePasswordVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    const button = input.nextElementSibling.querySelector('i'); // Иконка внутри кнопки
+
+    if (input.type === "password") {
+        input.type = "text";
+        button.classList.remove('fa-eye');
+        button.classList.add('fa-eye-slash'); // Иконка "глаз закрыт"
+    } else {
+        input.type = "password";
+        button.classList.remove('fa-eye-slash');
+        button.classList.add('fa-eye'); // Иконка "глаз открыт"
+    }
+}
+</script>
+{% endblock %}

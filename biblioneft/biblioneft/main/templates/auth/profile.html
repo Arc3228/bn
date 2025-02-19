@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <p class="name">{{ user.name }} {{ user.surname }}</p>
+    <h2 class="your_books">Ваши книги</h2>
+    {% if borrowed_books %}
+        <ul>
+            {% for book in borrowed_books %}
+                <li>
+                    <strong>{{ book.title }}</strong> by {{ book.author }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+    <p class="no_books">Вы пока не взяли ни одной книги.</p>
+    {% endif %}
+    <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>
+    </div>
+    {% if user.is_superuser %}
+    <div class="container">
+    <h1 class="page_title">Админ панель</h1>
+    <a class="django_link" href="/admin">Перейти на админ-панель Django</a>
+    <h2 class="form_title">Добавить книгу</h2>
+    <form method="post" action="{% url 'add_book' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="reg_btn" type="submit">Добавить книгу</button>
+    </form>
+    <h2 class="form_title">Добавить мероприятие</h2>
+    <form method="post">
+        <button type="submit" class="reg_btn">Добавить мероприятие</button>
+    </form>
+    </div>
+    {% endif %}
+    {% endblock %}

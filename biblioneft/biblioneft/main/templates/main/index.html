@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+<!-- Swiper -->
+  <div class="swiper mySwiper1">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="{% static 'images/karusel.png' %}" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static 'images/karusel1.png' %}" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="{% static 'images/karusel2.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+  <h1 class="desc_title">Креативное пространство «БиблиоНефть»</h1>
+  <p class="bn_desc">Благодаря гранту Благотворительного фонда «Татнефть» в ДК «Нефтьче» появилось обновленное Креативное пространство «БиблиоНефть». Помимо помещений для хранения книг и абонементного обслуживания, в обновленной библиотеке есть тайм-кафе с детской игровой зоной, проектный офис, зал-лекторий и читальный зал-коворкинг.
+Миссия и девиз Креативного пространства «БиблиоНефть» — ПОМОГАЕМ ДОБЫВАТЬ ЗНАНИЯ! В обновленной библиотеке проводятся концерты-квартирники, воркшопы, мастер-классы, квесты, музыкально-литературные гостиные, творческие встречи, лектории, презентации, семинары, тренинги, книжные выставки, квизы и другие интеллектуальные игры.</p>
+  <div class="books">
+    <div class="events_head">
+      <h1 class="events_title">Наши хиты</h1>
+      <a class="events_link" href="{% url 'book_list' %}">Каталог книг</a>
+    </div>
+    <div class="swiper mySwiper2">
+      <div class="arrows">
+      <img class="swiper-button-prev" src="{% static 'images/arrow-left.png' %}" alt="">
+      <img class="swiper-button-next" src="{% static 'images/arrow-right.png' %}" alt="">
+      </div>
+      <div class="swiper-wrapper">
+          {% for book in books %}
+          <div class="swiper-slide"
+               style="background-image: url('{{ book.image_book.url }}');">
+              <div class="book-info">
+                  <a  href="#" class="book_title_link">{{ book.title }}</a>
+                  <p>{{ book.author }}</p>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+  </div>
+  <div class="events">
+    <div class="events_head">
+      <h1 class="events_title">Мероприятия</h1>
+      <a class="events_link" href="#">Афиша</a>
+    </div>
+    <div class="swiper mySwiper3">
+      <div class="arrows">
+      <img class="swiper-button-prev" src="{% static 'images/arrow-left.png' %}" alt="">
+      <img class="swiper-button-next" src="{% static 'images/arrow-right.png' %}" alt="">
+      </div>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+        <div class="swiper-slide"></div>
+      </div>
+  </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper1 = new Swiper(".mySwiper1", {
+      spaceBetween: 0,
+      centeredSlides: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+    });
+
+    var swiper2 = new Swiper(".mySwiper2", {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+
+    var swiper3 = new Swiper(".mySwiper3", {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+{% endblock %}
