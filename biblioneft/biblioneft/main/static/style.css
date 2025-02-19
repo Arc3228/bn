@@ -36,34 +36,56 @@ padding-top: 30px;
 padding-bottom: 30px;
 }
 
+
+
 .nav {
 display: flex;
 flex-direction: column;
 gap: 50px;
 }
 
-.nav ul {
-display: flex;
-align-content: center;
-gap: 25px;
+.menu {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
 }
 
-.nav ul li {
-list-style: none;
+.dropdown {
+    position: relative;
 }
 
-.nav ul li select {
-display: none;
+.dropbtn {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.odd {
-cursor: pointer;
-transition: .3s;
-color: #F3F3F3;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #03030A;
+    min-width: 150px;
+    list-style: none;
+    padding: 10px;
+    z-index: 9999999;
 }
 
-.odd:hover {
-color: #C7B475;
+.dropdown-content li {
+    padding: 5px 0;
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #333;
+}
+
+.show {
+    display: block;
 }
 
 .search-bar input{
@@ -368,6 +390,10 @@ font-size: 18px;
 font-weight: 500;
 }
 
+.events {
+margin-bottom: 100px;
+}
+
 /* ПРОФИЛЬ */
 
 .name {
@@ -408,7 +434,7 @@ margin-top: 50px;
 }
 
 .pages_first_line, .pages_second_line, .pages_img_big {
-margin-bottom: 50px;
+margin-bottom: 30px;
 }
 
 .pages_first_line, .pages_second_line {
@@ -420,8 +446,12 @@ gap: 30px;
 max-width: 1020px;
 }
 
-.pages_par1{
+.pages_par1, .pages_par2, .pages_par3, .pages_par4, .pages_par5 {
 margin-bottom: 20px;
+}
+
+.history {
+margin-bottom: 100px;
 }
 
 .pages_list li {

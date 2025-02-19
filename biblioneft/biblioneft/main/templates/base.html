@@ -13,6 +13,26 @@
 
     <title>БиблиоНефть</title>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".dropbtn").forEach(button => {
+        button.addEventListener("click", function (e) {
+            e.preventDefault();
+            let dropdown = this.nextElementSibling;
+            dropdown.classList.toggle("show");
+        });
+    });
+
+    // Закрытие выпадающих списков при клике вне
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".dropdown")) {
+            document.querySelectorAll(".dropdown-content").forEach(menu => {
+                menu.classList.remove("show");
+            });
+        }
+    });
+});
+</script>
 <body>
   <header class = "header">
     <div class="container wrapper">
@@ -20,31 +40,34 @@
         <a href = "{% url 'home' %}"><img src="{% static 'images/white-logo.svg' %}" alt="logo"></a>
       </div>
         <nav class="nav">
-            <ul>
-                <li><p class="odd" onclick="openDropdown">О библиотеке</p>
-                    <select>
-                        <option value="История библиотеки"><a href="#">История библиотеки</a></option>
-                        <option value="Гранты"><a href="#">Гранты</a></option>
-                        <option value="Проекты"><a href="#">Проекты</a></option>
-                    </select>
-                </li>
-                <li><p class="odd" onclick="openDropdown">Пространства</p>
-                    <select>
-                        <option value="Читальный зал"><a href="{% url 'chit-zal' %}">Читальный зал</a></option>
-                        <option value="Проектный офис"><a href="{% url 'office' %}">Проектый офис</a></option>
-                        <option value="Тайм-кафе"><a href="{% url 'cafe' %}">Тайм-кафе</a></option>
-                        <option value="Лекторий"><a href="{% url 'lecktoriy' %}">Лекторий</a></option>
-                    </select>
-                </li>
-                <li><p class="odd" onclick="openDropdown">Читателям</p>
-                    <select>
-                        <option value="Как записаться"><a href="#">Как записаться</a></option>
-                        <option value="График работы"><a href="#">График работы</a></option>
-                        <option value="Фото-обзор"><a href="#">Фото-обзор</a></option>
-                    </select>
-                </li>
-                <li><a class="odd" href="https://neftche.ru/">ДК "Нефтьче"</a></li>
+            <ul class="menu">
+        <li class="dropdown">
+            <a href="#" class="dropbtn">О библиотеке</a>
+            <ul class="dropdown-content">
+                <li><a href="#">История библиотеки</a></li>
+                <li><a href="#">Гранты</a></li>
+                <li><a href="#">Проекты</a></li>
             </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Пространства</a>
+            <ul class="dropdown-content">
+                <li><a href="{% url 'chit-zal' %}">Читальный зал</a></li>
+                <li><a href="{% url 'office' %}">Проектный офис</a></li>
+                <li><a href="{% url 'cafe' %}">Тайм-кафе</a></li>
+                <li><a href="{% url 'lecktoriy' %}">Лекторий</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">Читателям</a>
+            <ul class="dropdown-content">
+                <li><a href="#">Как записаться</a></li>
+                <li><a href="#">Правила работы</a></li>
+                <li><a href="#">Фото-обзор</a></li>
+            </ul>
+        </li>
+        <li><a class="dropbtn" href="https://neftche.ru">ДК "Нефтьче"</a></li>
+    </ul>
             <div class="search">
                 <div class="search-bar">
                         <input type="text" placeholder="Поиск по сайту"> <img src="{% static 'images/search.svg' %}" alt="search-icon">
