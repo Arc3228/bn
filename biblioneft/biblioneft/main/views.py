@@ -145,16 +145,11 @@ def book_list(request):
 
 def search(request):
     query = request.GET.get('q', '')
-    book_results = Book.objects.none()
-    event_results = Event.objects.none()
-    if query:
-        book_results = Book.objects.filter(title__icontains=query)
-        event_results = Event.objects.filter(title__icontains=query)
-
+    book_results = Book.objects.filter(title__icontains=query) if query else Book.objects.none()
+    event_results = Event.objects.filter(title__icontains=query) if query else Event.objects.none()
     context = {
         'query': query,
         'book_results': book_results,
         'event_results': event_results,
     }
     return render(request, 'main/search_results.html', context)
-
