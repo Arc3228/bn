@@ -105,6 +105,10 @@ color: #C7B475;
     display: block;
 }
 
+.search-bar {
+width: 450px;
+}
+
 .search-bar input{
 width: 450px;
 border: #C7B475 3px solid;
@@ -116,8 +120,12 @@ outline: none;
 padding:  5px 10px;
 }
 
-.search-bar img {
+.search-bar button {
 position: relative;
+max-width: 20px;
+outline: none;
+border: none;
+background: none;
 left: 420px;
 top: 7px;
 

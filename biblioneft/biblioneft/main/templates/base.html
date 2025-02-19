@@ -41,15 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
         <nav class="nav">
             <ul class="menu">
-        <li class="dropdown">
+            <li class="dropdown">
             <a href="#" class="dropbtn">О библиотеке</a>
             <ul class="dropdown-content">
                 <li><a href="#">История библиотеки</a></li>
                 <li><a href="#">Гранты</a></li>
                 <li><a href="#">Проекты</a></li>
             </ul>
-        </li>
-        <li class="dropdown">
+            </li>
+            <li class="dropdown">
             <a href="#" class="dropbtn">Пространства</a>
             <ul class="dropdown-content">
                 <li><a href="{% url 'chit-zal' %}">Читальный зал</a></li>
@@ -57,27 +57,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 <li><a href="{% url 'cafe' %}">Тайм-кафе</a></li>
                 <li><a href="{% url 'lecktoriy' %}">Лекторий</a></li>
             </ul>
-        </li>
-        <li class="dropdown">
+            </li>
+            <li class="dropdown">
             <a href="#" class="dropbtn">Читателям</a>
             <ul class="dropdown-content">
                 <li><a href="#">Как записаться</a></li>
                 <li><a href="#">Правила работы</a></li>
                 <li><a href="#">Фото-обзор</a></li>
             </ul>
-        </li>
-        <li><a class="dropbtn" href="https://neftche.ru">ДК "Нефтьче"</a></li>
-    </ul>
-            <div class="search">
-                <div class="search-bar">
-                        <form action="" method="get">
-            <input type="text" name="q" placeholder="Поиск по сайту">
-            <button type="submit">
-                <img src="{% static 'images/search.svg' %}" alt="search-icon">
-            </button>
-        </form>
-                </div>
+            </li>
+            <li><a class="dropbtn" href="https://neftche.ru">ДК "Нефтьче"</a></li>
+        </ul>
+        <div class="search">
+            <div class="search-bar">
+                <form action="{% url 'search' %}" method="get">
+                    <input type="text" name="q" placeholder="Поиск по сайту">
+                    <button class="" type="submit">
+                    <img src="{% static 'images/search.svg' %}" alt="search-icon">
+                    </button>
+                </form>
             </div>
+        </div>
         </nav>
         <div class="reg">
             <div class="reg-group">

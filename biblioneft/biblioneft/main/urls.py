@@ -18,6 +18,7 @@ urlpatterns = [
     path("lecktoriy/", views.lecktoriy, name='lecktoriy'),
     path("cafe/", views.cafe, name='cafe'),
     path("book_list/", views.book_list, name='book_list'),
+    path('search/', views.search, name='search'),
 ]
 
 if settings.DEBUG:

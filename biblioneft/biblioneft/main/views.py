@@ -142,3 +142,19 @@ def book_list(request):
     books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
     return render(request, 'pages/book_list.html', {'books': books})
 
+
+def search(request):
+    query = request.GET.get('q', '')
+    book_results = Book.objects.none()
+    event_results = Event.objects.none()
+    if query:
+        book_results = Book.objects.filter(title__icontains=query)
+        event_results = Event.objects.filter(title__icontains=query)
+
+    context = {
+        'query': query,
+        'book_results': book_results,
+        'event_results': event_results,
+    }
+    return render(request, 'main/search_results.html', context)
+
