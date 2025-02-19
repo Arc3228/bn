@@ -54,15 +54,20 @@
       <img class="swiper-button-next" src="{% static 'images/arrow-right.png' %}" alt="">
       </div>
       <div class="swiper-wrapper">
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
-        <div class="swiper-slide"></div>
+        {% for event in events %}
+        <div class="swiper-slide">
+          <div class="event_card">
+            <a href="#" class="event_title">{{ event.title }}</a>
+            <p class="event_type">{{ event.get_event_type_display }}</p>
+            <p class="event_date">{{ event.start_date|date:"d M Y H:i" }}</p>
+            <p class="event_location">{{ event.location }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <div class="swiper-slide">
+          <p>Нет мероприятий</p>
+        </div>
+        {% endfor %}
       </div>
   </div>
   </div>

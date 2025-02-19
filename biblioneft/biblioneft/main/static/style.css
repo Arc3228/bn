@@ -356,7 +356,14 @@ margin-top: -260px;
     opacity: 1;
 }
 
-.book_title_link {
+.event_card {
+text-align: center;
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.book_title_link, .event_title {
 font-size: 18px;
 font-weight: 500;
 }

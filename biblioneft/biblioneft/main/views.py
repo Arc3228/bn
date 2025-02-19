@@ -7,12 +7,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, RegistrationForm, BookForm, EventForm
 from django.contrib import messages
-from .models import Book
+from .models import Book, Event
 
 
 def index(request):
     books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
-    return render(request, 'main/index.html', {'books': books})
+    events = Event.objects.filter(is_active=True).order_by('start_date')
+    return render(request, 'main/index.html', {'books': books, 'events': events})
+
 
 def add_event(request):
     if request.method == 'POST':
