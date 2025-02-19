@@ -70,7 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
     </ul>
             <div class="search">
                 <div class="search-bar">
-                        <input type="text" placeholder="Поиск по сайту"> <img src="{% static 'images/search.svg' %}" alt="search-icon">
+                        <form action="" method="get">
+            <input type="text" name="q" placeholder="Поиск по сайту">
+            <button type="submit">
+                <img src="{% static 'images/search.svg' %}" alt="search-icon">
+            </button>
+        </form>
                 </div>
             </div>
         </nav>

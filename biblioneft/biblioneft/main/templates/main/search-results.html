@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Результаты поиска</h1>
+    {% if query %}
+        <p>По запросу <strong>"{{ query }}"</strong> найдено:</p>
+        <h2>Книги</h2>
+        {% if book_results %}
+            <ul>
+            {% for book in book_results %}
+                <li>
+                    <a href="#">{{ book.title }}</a> – {{ book.author }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Книг не найдено.</p>
+        {% endif %}
+
+        <h2>Мероприятия</h2>
+        {% if event_results %}
+            <ul>
+            {% for event in event_results %}
+                <li>
+                    <a href="#">{{ event.title }}</a> – {{ event.get_event_type_display }} ({{ event.start_date|date:"d M Y H:i" }})
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Мероприятий не найдено.</p>
+        {% endif %}
+    {% else %}
+        <p>Введите поисковый запрос.</p>
+    {% endif %}
+</div>
+{% endblock %}
