@@ -63,11 +63,15 @@ def registration_view(request):
 
 @login_required
 def profile_view(request):
-    """
-    Отображает профиль пользователя и форму добавления книги.
-    """
-    form = BookForm()  # Пустая форма для добавления книги
-    return render(request, "auth/profile.html", {"user": request.user, 'form': form})
+    book_form = BookForm()
+    # Новый экземпляр формы мероприятия
+    event_form = EventForm()
+
+    return render(request, "auth/profile.html", {
+        "user": request.user,
+        "form": book_form,
+        "event_form": event_form,
+    })
 
 
 @login_required
@@ -135,3 +139,4 @@ def cafe(request):
 def book_list(request):
     books = Book.objects.exclude(image_book__isnull=True).exclude(image_book__exact='')
     return render(request, 'pages/book_list.html', {'books': books})
+

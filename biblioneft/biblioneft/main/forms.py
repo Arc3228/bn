@@ -269,8 +269,8 @@ class EventForm(forms.ModelForm):
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             # Текстовое поле с несколькими строками для описания
             'description': forms.Textarea(attrs={'rows': 4}),
-            # Множественный выбор в виде чекбоксов для участников
-            'participants': forms.CheckboxSelectMultiple(),
+            'title': forms.TextInput(attrs={'placeholder': 'Введите название'}),
+            'location': forms.TextInput(attrs={'placeholder': 'Место проведения'})
         }
         labels = {
             'title': 'Название мероприятия',
