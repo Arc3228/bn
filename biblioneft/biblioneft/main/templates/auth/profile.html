@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container">
     <p class="name">{{ user.name }} {{ user.surname }}</p>
+
     <h2 class="your_books">Ваши книги</h2>
     {% if borrowed_books %}
         <ul>
@@ -15,6 +16,7 @@
     {% else %}
         <p class="no_books">Вы пока не взяли ни одной книги.</p>
     {% endif %}
+
     <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>
 </div>
 
