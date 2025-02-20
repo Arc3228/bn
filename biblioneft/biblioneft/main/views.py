@@ -1,11 +1,11 @@
 import os
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, RegistrationForm, BookForm, EventForm
 from django.contrib import messages
-from .models import Book, Event
+from .models import Book, Event, BorrowedBook
 
 
 def index(request):
@@ -128,3 +128,24 @@ def search(request):
         'event_results': event_results,
     }
     return render(request, 'main/search_results.html', context)
+
+
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, 'pages/book_detail.html', {'book': book})
+
+@login_required
+def reserve_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    # Проверяем, не забронирована ли книга уже (если есть активная запись, где is_returned=False)
+    if BorrowedBook.objects.filter(book=book, is_returned=False).exists():
+        messages.error(request, "Эта книга уже забронирована")
+    else:
+        # Создаем новую запись о заимствовании книги
+        BorrowedBook.objects.create(user=request.user, book=book)
+        messages.success(request, "Книга успешно забронирована")
+    return redirect('book_detail', pk=book.pk)
+
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'pages/event_detail.html', {'event': event})

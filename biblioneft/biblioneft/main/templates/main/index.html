@@ -23,7 +23,6 @@
   <div class="books">
     <div class="events_head">
       <h1 class="events_title">Наши хиты</h1>
-      <a class="events_link" href="{% url 'book_list' %}">Каталог книг</a>
     </div>
     <div class="swiper mySwiper2">
       <div class="arrows">
@@ -35,7 +34,7 @@
           <div class="swiper-slide"
                style="background-image: url('{{ book.image_book.url }}');">
               <div class="book-info">
-                  <a  href="#" class="book_title_link">{{ book.title }}</a>
+                  <a  href="{% url 'book_detail' book.pk %}" class="book_title_link">{{ book.title }}</a>
                   <p>{{ book.author }}</p>
               </div>
           </div>
@@ -46,7 +45,6 @@
   <div class="events">
     <div class="events_head">
       <h1 class="events_title">Мероприятия</h1>
-      <a class="events_link" href="#">Афиша</a>
     </div>
     <div class="swiper mySwiper3">
       <div class="arrows">
@@ -57,7 +55,7 @@
         {% for event in events %}
         <div class="swiper-slide">
           <div class="event_card">
-            <a href="#" class="event_title">{{ event.title }}</a>
+            <a href="{% url 'event_detail' event.pk %}" class="event_title">{{ event.title }}</a>
             <p class="event_type">{{ event.get_event_type_display }}</p>
             <p class="event_date">{{ event.start_date|date:"d M Y H:i" }}</p>
           </div>

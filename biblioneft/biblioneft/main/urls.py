@@ -18,6 +18,9 @@ urlpatterns = [
     path("cafe/", views.cafe, name='cafe'),
     path("book_list/", views.book_list, name='book_list'),
     path('search/', views.search, name='search'),
+    path('book/<int:pk>/', views.book_detail, name='book_detail'),
+    path('book/<int:pk>/reserve/', views.reserve_book, name='reserve_book'),
+    path('event/<int:pk>/', views.event_detail, name='event_detail'),
 ]
 
 if settings.DEBUG:
