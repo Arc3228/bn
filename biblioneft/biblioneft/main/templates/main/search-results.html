@@ -4,14 +4,19 @@
 {% block content %}
 <div class="container">
     <h1>Результаты поиска</h1>
-    {% if query %}
+
+    {% if not query %}
+        <p>Введите поисковый запрос в строке поиска выше.</p>
+    {% elif not book_results and not event_results %}
+        <p>По запросу <strong>"{{ query }}"</strong> ничего не найдено.</p>
+    {% else %}
         <p>По запросу <strong>"{{ query }}"</strong> найдено:</p>
         <h2>Книги</h2>
         {% if book_results %}
             <ul>
             {% for book in book_results %}
                 <li>
-                    <a href="#">{{ book.title }}</a> – {{ book.author }}
+                    <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> – {{ book.author }}
                 </li>
             {% endfor %}
             </ul>
@@ -24,15 +29,14 @@
             <ul>
             {% for event in event_results %}
                 <li>
-                    <a href="#">{{ event.title }}</a> – {{ event.get_event_type_display }} ({{ event.start_date|date:"d M Y H:i" }})
+                    <a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a>
+                    – {{ event.get_event_type_display }} ({{ event.start_date|date:"d M Y H:i" }})
                 </li>
             {% endfor %}
             </ul>
         {% else %}
             <p>Мероприятий не найдено.</p>
         {% endif %}
-    {% else %}
-        <p>Введите поисковый запрос.</p>
     {% endif %}
 </div>
 {% endblock %}

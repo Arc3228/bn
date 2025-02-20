@@ -24,7 +24,23 @@
 <div class="container">
     <h1 class="page_title">Админ панель</h1>
     <a class="django_link" href="/admin">Перейти на админ-панель Django</a>
-
+    <h2 class="form_title">Управление книгами</h2>
+    {% if reserved_books %}
+        <ul class="reserved_books_list">
+            {% for reservation in reserved_books %}
+                <li class="reserved_book">
+                    <strong>{{ reservation.book.title }}</strong> by {{ reservation.book.author }}
+                    <small>(забронирована: {{ reservation.borrowed_date|date:"d M Y" }})</small>
+                    <form method="post" action="{% url 'return_book' reservation.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="return_btn" type="submit">Вернуть книгу</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no_books">Нет забронированных книг.</p>
+    {% endif %}
     <h2 class="form_title">Добавить книгу</h2>
     <form method="post" action="{% url 'add_book' %}">
         {% csrf_token %}

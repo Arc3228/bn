@@ -431,7 +431,7 @@ padding-top: 50px;
 padding-bottom: 15px;
 }
 
-.logout_btn {
+.logout_btn, .return_btn {
 color: #F3F3F3;
 background: #dc3545;
 padding: 5px 10px;
@@ -443,7 +443,12 @@ text-align: center;
 margin-bottom: 20px;
 }
 
+.reserved_books {
+font-size: 28px;
+}
+
 .reserved_book {
+font-size: 20px;
 margin-top: 10px;
 list-style: none;
 margin-bottom: 15px;
@@ -456,6 +461,21 @@ margin-bottom: 15px;
 .no_books {
 margin-bottom: 20px;
 }
+
+.return_btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.return_btn:hover, .logout_btn:hover {
+    background-color: #c9302c;
+}
+
 
 /* СТРАНИЦЫ ПРОСТРАНСТВ */
 

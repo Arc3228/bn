@@ -1,5 +1,6 @@
 import os
-
+from django.utils import timezone
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
@@ -123,9 +124,15 @@ def book_list(request):
 
 
 def search(request):
-    query = request.GET.get('q', '')
-    book_results = Book.objects.filter(title__icontains=query) if query else Book.objects.none()
-    event_results = Event.objects.filter(title__icontains=query) if query else Event.objects.none()
+    query = request.GET.get('q', '').strip()
+    book_results = Book.objects.filter(
+        Q(title__icontains=query) | Q(author__icontains=query)
+    ) if query else Book.objects.none()
+
+    event_results = Event.objects.filter(
+        Q(title__icontains=query) | Q(description__icontains=query)
+    ) if query else Event.objects.none()
+
     context = {
         'query': query,
         'book_results': book_results,
@@ -153,3 +160,17 @@ def reserve_book(request, pk):
 def event_detail(request, pk):
     event = get_object_or_404(Event, pk=pk)
     return render(request, 'pages/event_detail.html', {'event': event})
+
+@login_required
+def return_book(request, pk):
+    borrowed_book = get_object_or_404(BorrowedBook, pk=pk)
+
+    if not borrowed_book.is_returned:  # Проверяем, не была ли уже возвращена книга
+        borrowed_book.is_returned = True
+        borrowed_book.returned_date = timezone.now()
+        borrowed_book.save()
+        messages.success(request, f"Книга '{borrowed_book.book.title}' возвращена.")
+    else:
+        messages.warning(request, "Эта книга уже была возвращена.")
+
+    return redirect('profile')  # Перенаправляем обратно в профиль
