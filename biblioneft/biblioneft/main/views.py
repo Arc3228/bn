@@ -64,13 +64,17 @@ def registration_view(request):
 def profile_view(request):
     book_form = BookForm()
     event_form = EventForm()
-    # Получаем книги, взятые текущим пользователем (поле borrowed_by)
+    # Книги, добавленные в профиль как "взятые" (если используется поле borrowed_by в модели Book)
     borrowed_books = Book.objects.filter(borrowed_by=request.user)
+    # Записи о бронировании (из модели BorrowedBook)
+    reserved_books = BorrowedBook.objects.filter(user=request.user, is_returned=False)
+
     return render(request, "auth/profile.html", {
         "user": request.user,
         "form": book_form,
         "event_form": event_form,
         "borrowed_books": borrowed_books,
+        "reserved_books": reserved_books,
     })
 
 

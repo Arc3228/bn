@@ -443,6 +443,12 @@ text-align: center;
 margin-bottom: 20px;
 }
 
+.reserved_book {
+margin-top: 10px;
+list-style: none;
+margin-bottom: 15px;
+}
+
 .your_books {
 margin-bottom: 15px;
 }
@@ -533,4 +539,9 @@ margin-top: 50px;
     background-color: #d1ecf1;
     color: #0c5460;
     border: 1px solid #bee5eb;
+}
+
+.event_detail_title {
+font-size: 36px;
+margin-top: 50px;
 }

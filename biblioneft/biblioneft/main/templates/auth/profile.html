@@ -3,18 +3,18 @@
 {% block content %}
 <div class="container">
     <p class="name">{{ user.name }} {{ user.surname }}</p>
-
-    <h2 class="your_books">Ваши книги</h2>
-    {% if borrowed_books %}
-        <ul>
-            {% for book in borrowed_books %}
-                <li>
-                    <strong>{{ book.title }}</strong> by {{ book.author }}
+    <h2 class="reserved_books">Ваши книги</h2>
+    {% if reserved_books %}
+        <ul class="reserved_books_list">
+            {% for reservation in reserved_books %}
+                <li class="reserved_book">
+                    <strong>{{ reservation.book.title }}</strong> by {{ reservation.book.author }}
+                    <small>(забронирована: {{ reservation.borrowed_date|date:"d M Y" }})</small>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p class="no_books">Вы пока не взяли ни одной книги.</p>
+        <p class="no_books">У вас нет книг.</p>
     {% endif %}
 
     <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>

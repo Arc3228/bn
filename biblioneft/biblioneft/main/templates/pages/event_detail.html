@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="event_title">{{ event.title }}</h1>
+    <h1 class="event_detail_title">{{ event.title }}</h1>
     <p class="event_type">Тип мероприятия: {{ event.get_event_type_display }}</p>
     <p class="event_date">Дата и время начала: {{ event.start_date|date:"d M Y H:i" }}</p>
     <p class="event_location">Место проведения: {{ event.location }}</p>
