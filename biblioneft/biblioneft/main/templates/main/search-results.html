@@ -4,7 +4,6 @@
 {% block content %}
 <div class="container">
     <h1>Результаты поиска</h1>
-
     {% if not query %}
         <p>Введите поисковый запрос в строке поиска выше.</p>
     {% elif not book_results and not event_results %}
