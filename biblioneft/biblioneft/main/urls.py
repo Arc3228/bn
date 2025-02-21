@@ -3,7 +3,6 @@ from django.contrib.auth.views import LogoutView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import return_book
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -22,8 +21,9 @@ urlpatterns = [
     path('book/<int:pk>/', views.book_detail, name='book_detail'),
     path('book/<int:pk>/reserve/', views.reserve_book, name='reserve_book'),
     path('event/<int:pk>/', views.event_detail, name='event_detail'),
-    path('return_book/<int:pk>/', return_book, name='return_book'),
-
+    path('return_book/<int:pk>/', views.return_book, name='return_book'),
+    path('event/<int:pk>/register/', views.register_for_event, name='register_for_event'),
+    path('event/<int:pk>/cancel/', views.cancel_event_registration, name='cancel_event_registration'),
 ]
 
 if settings.DEBUG:

@@ -65,10 +65,9 @@ def registration_view(request):
 def profile_view(request):
     book_form = BookForm()
     event_form = EventForm()
-    # Книги, добавленные в профиль как "взятые" (если используется поле borrowed_by в модели Book)
     borrowed_books = Book.objects.filter(borrowed_by=request.user)
-    # Записи о бронировании (из модели BorrowedBook)
     reserved_books = BorrowedBook.objects.filter(user=request.user, is_returned=False)
+    registered_events = request.user.events_participated.all()  # События, на которые пользователь записан
 
     return render(request, "auth/profile.html", {
         "user": request.user,
@@ -76,6 +75,7 @@ def profile_view(request):
         "event_form": event_form,
         "borrowed_books": borrowed_books,
         "reserved_books": reserved_books,
+        "registered_events": registered_events,
     })
 
 
@@ -174,3 +174,32 @@ def return_book(request, pk):
         messages.warning(request, "Эта книга уже была возвращена.")
 
     return redirect('profile')  # Перенаправляем обратно в профиль
+
+
+@login_required
+def register_for_event(request, pk):
+    event = Event.objects.get(pk=pk)
+
+    # Проверяем, не заполнено ли максимальное количество участников
+    if event.max_participants and event.participants.count() >= event.max_participants:
+        messages.error(request, "Извините, на это мероприятие уже нет мест.")
+        return redirect('event_detail', pk=pk)  # Перенаправляем обратно на страницу события
+
+    # Добавляем пользователя как участника
+    if event.participants.filter(id=request.user.id).exists():
+        messages.info(request, "Вы уже зарегистрированы на это мероприятие.")
+    else:
+        event.participants.add(request.user)
+        messages.success(request, f"Вы успешно зарегистрированы на мероприятие '{event.title}'.")
+
+    return redirect('event_detail', pk=pk)  # Перенаправляем обратно на страницу события
+
+@login_required
+def cancel_event_registration(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if event.participants.filter(id=request.user.id).exists():
+        event.participants.remove(request.user)
+        messages.success(request, f"Вы успешно отменили регистрацию на мероприятие '{event.title}'.")
+    else:
+        messages.info(request, "Вы не зарегистрированы на это мероприятие.")
+    return redirect('event_detail', pk=pk)

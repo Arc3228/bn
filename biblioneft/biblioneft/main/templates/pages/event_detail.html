@@ -12,5 +12,20 @@
             <p>{{ event.description }}</p>
         </div>
     {% endif %}
+        {% if user.is_authenticated %}
+        {% if user in event.participants.all %}
+            <form method="post" action="{% url 'cancel_event_registration' pk=event.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="cansel_btn">Отменить запись</button>
+            </form>
+        {% else %}
+            <form method="post" action="{% url 'register_for_event' pk=event.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="reg_event_btn">Записаться на мероприятие</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p>Чтобы записаться, необходимо <a href="{% url 'login' %}">войти</a>.</p>
+    {% endif %}
 </div>
 {% endblock %}

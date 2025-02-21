@@ -10,7 +10,6 @@ scroll-behavior: smooth;
 }
 
 .container {
-overflow: hidden;
 max-width: 1760px;
 padding: 0 20px;
 margin: 0 auto;
@@ -431,6 +430,12 @@ padding-top: 50px;
 padding-bottom: 15px;
 }
 
+.logout_btn {
+display: flex;
+max-width: 85px;
+margin-top: 10px;
+}
+
 .logout_btn, .return_btn {
 color: #F3F3F3;
 background: #dc3545;
@@ -464,7 +469,6 @@ margin-bottom: 20px;
 
 .return_btn {
     background-color: #d9534f;
-    color: white;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
@@ -476,6 +480,9 @@ margin-bottom: 20px;
     background-color: #c9302c;
 }
 
+.reg_events_list {
+list-style: none;
+}
 
 /* СТРАНИЦЫ ПРОСТРАНСТВ */
 
@@ -564,4 +571,38 @@ margin-top: 50px;
 .event_detail_title {
 font-size: 36px;
 margin-top: 50px;
+}
+
+.event_type {
+font-size: 20px;
+margin: 10px 0;
+}
+
+.event_date, .event_location {
+margin-bottom: 10px;
+}
+
+.reserve_btn {
+margin-top: 30px;
+background: #B69F56;
+color: #f3f3f3;
+padding: 5px 10px;
+border-radius: 5px;
+}
+
+.cansel_btn, .reg_event_btn {
+max-width: 270px;
+outline: none;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+color: #f3f3f3;
+}
+
+.reg_event_btn {
+background: #255727;
+}
+
+.cansel_btn {
+background-color: #d9534f;
 }

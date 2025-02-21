@@ -13,7 +13,7 @@
     <p>{{ book.description }}</p>
     <p>Количество страниц: {{ book.pages }}</p>
     <!-- Кнопка бронирования книги -->
-    <a href="{% url 'reserve_book' book.pk %}" class="btn btn-primary">Забронировать книгу</a>
+    <a href="{% url 'reserve_book' book.pk %}" class="reserve_btn">Забронировать книгу</a>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}

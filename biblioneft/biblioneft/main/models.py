@@ -199,6 +199,5 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.title} ({self.get_event_type_display()})"
 
-    class Meta:
-        verbose_name = "Мероприятие"
-        verbose_name_plural = "Мероприятия"
+
+

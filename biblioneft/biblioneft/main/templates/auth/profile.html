@@ -16,6 +16,18 @@
     {% else %}
         <p class="no_books">У вас нет книг.</p>
     {% endif %}
+<h2 class="registered_events">Ваши мероприятия</h2>
+    {% if registered_events %}
+        <ul class="reg_events_list">
+            {% for event in registered_events %}
+                <li>
+                    <strong>{{ event.title }}</strong> - {{ event.start_date|date:"d M Y" }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Вы не записаны на мероприятия.</p>
+    {% endif %}
 
     <a class="logout_btn" href="{% url 'logout' %}">Выйти</a>
 </div>
