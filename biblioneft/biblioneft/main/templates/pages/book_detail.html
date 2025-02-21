@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
     {% if book.image_book %}
-        <img src="{{ book.image_book.url }}" alt="{{ book.title }}">
+        <img class="" src="{{ book.image_book.url }}" alt="{{ book.title }}">
     {% else %}
         <img src="{% static 'images/default_book.png' %}" alt="Нет изображения">
     {% endif %}
