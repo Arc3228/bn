@@ -10,7 +10,7 @@
         <p>По запросу <strong>"{{ query }}"</strong> ничего не найдено.</p>
     {% else %}
         <p>По запросу <strong>"{{ query }}"</strong> найдено:</p>
-        <h2>Книги</h2>
+        <h2 class="books_subtitle">Книги</h2>
         {% if book_results %}
             <ul>
             {% for book in book_results %}
@@ -23,7 +23,7 @@
             <p>Книг не найдено.</p>
         {% endif %}
 
-        <h2>Мероприятия</h2>
+        <h2 class="books_subtitle">Мероприятия</h2>
         {% if event_results %}
             <ul>
             {% for event in event_results %}

@@ -50,7 +50,6 @@ overflow: visible;
     display: flex;
     gap: 20px;
     z-index: 9999999999;
-    overflow: visible;
 }
 
 .dropdown {
@@ -74,10 +73,7 @@ color: #C7B475;
     background-color: #03030A;
     list-style: none;
     padding: 10px;
-    z-index: 9999999999;
-    overflow: visible;
-    transition: opacity 0.3s ease-in-out, visibility 0.2s ease-in-out;
-
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .dropdown:hover .dropdown-content,
@@ -85,10 +81,6 @@ color: #C7B475;
     display: block;
     opacity: 1;
     visibility: visible;
-}
-
-.dropdown-content li {
-
 }
 
 .dropdown-content a {
@@ -131,7 +123,6 @@ border: none;
 background: none;
 left: 420px;
 top: 7px;
-
 }
 
 .search-bar input::placeholder {
@@ -583,8 +574,22 @@ margin: 10px 0;
 margin-bottom: 10px;
 }
 
+.book_pages {
+margin-top: 5px;
+margin-bottom: 15px;
+}
+
+.book_img {
+max-width: 320px;
+height: 470px;
+}
+
+.book_page {
+display: flex;
+gap: 30px;
+}
+
 .reserve_btn {
-margin-top: 30px;
 background: #B69F56;
 color: #f3f3f3;
 padding: 5px 10px;
@@ -611,4 +616,8 @@ background-color: #d9534f;
 .search_link {
 font-weight: 500;
 font-size: 18px;
+}
+
+.books_subtitle {
+margin-top: 20px;
 }

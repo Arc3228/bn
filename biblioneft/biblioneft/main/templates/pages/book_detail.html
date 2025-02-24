@@ -2,18 +2,20 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="book_page container">
     {% if book.image_book %}
-        <img class="" src="{{ book.image_book.url }}" alt="{{ book.title }}">
+        <img class="book_img" src="{{ book.image_book.url }}" alt="{{ book.title }}">
     {% else %}
         <img src="{% static 'images/default_book.png' %}" alt="Нет изображения">
     {% endif %}
-    <h1 class="books_title">{{ book.title }}</h1>
+    <div class="book_info">
+        <h1 class="books_title">{{ book.title }}</h1>
     <p>Автор: {{ book.author }}</p>
     <p>{{ book.description }}</p>
-    <p>Количество страниц: {{ book.pages }}</p>
+    <p class="book_pages">Количество страниц: {{ book.pages }}</p>
     <!-- Кнопка бронирования книги -->
     <a href="{% url 'reserve_book' book.pk %}" class="reserve_btn">Забронировать книгу</a>
+    </div>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
