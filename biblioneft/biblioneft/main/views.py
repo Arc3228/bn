@@ -155,16 +155,12 @@ def reserve_book(request, pk):
         # Создаем новую запись о заимствовании книги
         BorrowedBook.objects.create(user=request.user, book=book)
         messages.success(request, "Книга успешно забронирована")
-    return redirect('book_detail', pk=book.pk)
-
-def event_detail(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    return render(request, 'pages/event_detail.html', {'event': event})
+    # Рендерим страницу книги, чтобы сообщения были видны именно там
+    return book_detail(request, pk)
 
 @login_required
 def return_book(request, pk):
     borrowed_book = get_object_or_404(BorrowedBook, pk=pk)
-
     if not borrowed_book.is_returned:  # Проверяем, не была ли уже возвращена книга
         borrowed_book.is_returned = True
         borrowed_book.returned_date = timezone.now()
@@ -172,27 +168,26 @@ def return_book(request, pk):
         messages.success(request, f"Книга '{borrowed_book.book.title}' возвращена.")
     else:
         messages.warning(request, "Эта книга уже была возвращена.")
+    # Рендерим страницу книги, на которой произведено бронирование
+    return book_detail(request, borrowed_book.book.pk)
 
-    return redirect('profile')  # Перенаправляем обратно в профиль
-
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'pages/event_detail.html', {'event': event})
 
 @login_required
 def register_for_event(request, pk):
-    event = Event.objects.get(pk=pk)
-
+    event = get_object_or_404(Event, pk=pk)
     # Проверяем, не заполнено ли максимальное количество участников
     if event.max_participants and event.participants.count() >= event.max_participants:
         messages.error(request, "Извините, на это мероприятие уже нет мест.")
-        return redirect('event_detail', pk=pk)  # Перенаправляем обратно на страницу события
-
-    # Добавляем пользователя как участника
-    if event.participants.filter(id=request.user.id).exists():
+    elif event.participants.filter(id=request.user.id).exists():
         messages.info(request, "Вы уже зарегистрированы на это мероприятие.")
     else:
         event.participants.add(request.user)
         messages.success(request, f"Вы успешно зарегистрированы на мероприятие '{event.title}'.")
-
-    return redirect('event_detail', pk=pk)  # Перенаправляем обратно на страницу события
+    # Вместо редиректа возвращаем отрендеренную страницу мероприятия
+    return event_detail(request, pk)
 
 @login_required
 def cancel_event_registration(request, pk):
@@ -202,4 +197,5 @@ def cancel_event_registration(request, pk):
         messages.success(request, f"Вы успешно отменили регистрацию на мероприятие '{event.title}'.")
     else:
         messages.info(request, "Вы не зарегистрированы на это мероприятие.")
-    return redirect('event_detail', pk=pk)
+    # Рендерим страницу мероприятия, чтобы сообщения отображались только там
+    return event_detail(request, pk)
