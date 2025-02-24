@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1>Результаты поиска</h1>
+    <h1 class="books_title">Результаты поиска</h1>
     {% if not query %}
         <p>Введите поисковый запрос в строке поиска выше.</p>
     {% elif not book_results and not event_results %}
@@ -15,7 +15,7 @@
             <ul>
             {% for book in book_results %}
                 <li>
-                    <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> – {{ book.author }}
+                    <a class="search_link" href="{% url 'book_detail' book.pk %}">{{ book.title }}</a> – {{ book.author }}
                 </li>
             {% endfor %}
             </ul>
@@ -28,7 +28,7 @@
             <ul>
             {% for event in event_results %}
                 <li>
-                    <a href="{% url 'event_detail' event.pk %}">{{ event.title }}</a>
+                    <a class="search_link" href="{% url 'event_detail' event.pk %}">{{ event.title }}</a>
                     – {{ event.get_event_type_display }} ({{ event.start_date|date:"d M Y H:i" }})
                 </li>
             {% endfor %}
