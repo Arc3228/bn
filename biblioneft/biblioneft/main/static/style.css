@@ -404,6 +404,10 @@ flex-direction: column;
 gap: 15px;
 }
 
+.book_title_link, .book_author_link {
+color: #f3f3f3;
+}
+
 .book_title_link, .event_title {
 font-size: 18px;
 font-weight: 500;

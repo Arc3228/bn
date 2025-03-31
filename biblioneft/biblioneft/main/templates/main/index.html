@@ -35,7 +35,7 @@
                style="background-image: url('{{ book.image_book.url }}');">
               <div class="book-info">
                   <a  href="{% url 'book_detail' book.pk %}" class="book_title_link">{{ book.title }}</a>
-                  <p>{{ book.author }}</p>
+                  <p class="book_author_link">{{ book.author }}</p>
               </div>
           </div>
           {% endfor %}

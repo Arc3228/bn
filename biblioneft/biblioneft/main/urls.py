@@ -24,6 +24,7 @@ urlpatterns = [
     path('return_book/<int:pk>/', views.return_book, name='return_book'),
     path('event/<int:pk>/register/', views.register_for_event, name='register_for_event'),
     path('event/<int:pk>/cancel/', views.cancel_event_registration, name='cancel_event_registration'),
+    path('photo_obzor', views.photo_obzor, name='photo_obzor'),
 ]
 
 if settings.DEBUG:

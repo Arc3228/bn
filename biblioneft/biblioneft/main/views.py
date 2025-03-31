@@ -199,3 +199,6 @@ def cancel_event_registration(request, pk):
         messages.info(request, "Вы не зарегистрированы на это мероприятие.")
     # Рендерим страницу мероприятия, чтобы сообщения отображались только там
     return event_detail(request, pk)
+
+def photo_obzor(request):
+    return render(request, 'pages/photo_obzor.html')
