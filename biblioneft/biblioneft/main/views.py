@@ -202,3 +202,7 @@ def cancel_event_registration(request, pk):
 
 def photo_obzor(request):
     return render(request, 'pages/photo_obzor.html')
+
+
+def sign_up(request):
+    return render(request, 'pages/sign-up.html')

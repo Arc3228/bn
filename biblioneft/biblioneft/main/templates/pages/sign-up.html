@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h1 class="sign_title">Как записаться</h1>
+  <p class="sign_text">Читателем библиотеки может стать каждый гражданин Российской Федерации или другого государства с 14 лет.</p>
+      <div class="pages_second_line">
+        <img class="pages_img_left_big" src="{% static 'pages_img/zap/sign-up1.png' %}" alt="">
+        <img src="{% static 'pages_img/zap/sign-up2.png' %}" alt="">
+    </div>
+  <div class="sign_info">
+    <div class="sign_adress">
+      <h2 class="sign_adress_title">Адрес:</h2>
+      <p>г. Альметьевск, ул. Ленина, 98, служебный вход</p>
+    </div>
+    <div class="sign_phone">
+      <h2 class="sign_phone_title">Телефон:</h2>
+      <p>+7 (8553) 32-70-50</p>
+    </div>
+    <div class="sign_graf">
+      <h2 class="sign_graf_title">График работы:</h2>
+      <p>Понедельник – пятница с 9:00 до 17:00</p>
+    </div>
+    <div class="sign_docs">
+      <h2 class="sign_docs_title">Какие нужны документы:</h2>
+      <ul class="pages_list">
+        <li>для граждан РФ: паспорт РФ;</li>
+        <li class="sign_text">для граждан других стран: паспорт с визой (при отсутствии визы в паспорте обязательно предоставляется перевод на русский язык фамилии и имени);</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

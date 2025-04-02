@@ -625,3 +625,25 @@ font-size: 18px;
 .books_subtitle {
 margin-top: 20px;
 }
+
+.sign_title {
+font-size: 36px;
+margin-top: 50px;
+margin-bottom: 20px;
+}
+
+.sign_text {
+max-width: 670px;
+margin-bottom: 50px;
+}
+
+.sign_adress, .sign_phone, .sign_graf {
+display: flex;
+gap: 20px;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.sign_adress_title, .sign_phone_title, .sign_graf_title, .sign_docs_title {
+font-size: 18px;
+}
