@@ -206,3 +206,6 @@ def photo_obzor(request):
 
 def sign_up(request):
     return render(request, 'pages/sign-up.html')
+
+def schedule(request):
+    return render(request, 'pages/schedule.html')

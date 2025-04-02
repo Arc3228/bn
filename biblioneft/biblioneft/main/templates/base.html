@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="#" class="dropbtn">Читателям</a>
             <ul class="dropdown-content">
                 <li><a href="{% url 'sign_up' %}">Как записаться</a></li>
-                <li><a href="#">Правила работы</a></li>
+                <li><a href="{% url 'schedule' %}">График работы</a></li>
                 <li><a href="{% url 'photo_obzor' %}">Фото-обзор</a></li>
             </ul>
             </li>

@@ -647,3 +647,29 @@ margin-bottom: 20px;
 .sign_adress_title, .sign_phone_title, .sign_graf_title, .sign_docs_title {
 font-size: 18px;
 }
+
+.sign_docs_title {
+margin-bottom: 10px;
+}
+
+.schedule_title {
+text-align: center;
+margin-top: 50px;
+font-size: 36px;
+}
+
+.dows {
+margin-top:50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.dow {
+display: flex;
+gap: 30px;
+font-weight: bold;
+font-size: 24px;
+}
+
