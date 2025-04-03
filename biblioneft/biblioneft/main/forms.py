@@ -1,5 +1,6 @@
 from datetime import date
 import re
+from django.utils.timezone import now
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import User, Book, Event
@@ -266,7 +267,9 @@ class EventForm(forms.ModelForm):
         ]
         widgets = {
             # HTML5-виджет для выбора даты и времени
-            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'start_date': forms.DateTimeInput(
+                attrs={'type': 'datetime-local', 'min': now().strftime('%Y-%m-%dT%H:%M')}
+            ),
             # Текстовое поле с несколькими строками для описания
             'description': forms.Textarea(attrs={'rows': 4}),
             'title': forms.TextInput(attrs={'placeholder': 'Введите название'}),
@@ -283,3 +286,9 @@ class EventForm(forms.ModelForm):
             'max_participants': 'Максимальное количество участников',
             'is_active': 'Активно',
         }
+
+    def clean_start_date(self):
+        start_date = self.cleaned_data.get('start_date')
+        if start_date and start_date < now():
+            raise forms.ValidationError("Дата и время начала мероприятия не могут быть в прошлом.")
+        return start_date

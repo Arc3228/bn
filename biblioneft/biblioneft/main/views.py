@@ -209,3 +209,6 @@ def sign_up(request):
 
 def schedule(request):
     return render(request, 'pages/schedule.html')
+
+def playbill(request):
+    return render(request, 'pages/playbill.html')

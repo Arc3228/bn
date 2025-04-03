@@ -674,3 +674,9 @@ font-size: 24px;
 margin-bottom: 25px;
 width: 252px;
 }
+
+.playbill_link {
+font-size: 18px;
+font-weight: 500;
+color: #C7B475;
+}
