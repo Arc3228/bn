@@ -9,7 +9,53 @@
             <div class="dow_title">ПН</div>
             <div class="work_hours">9:00 - 17:00</div>
         </div>
+        <div class="dow">
+            <div class="dow_title">ВТ</div>
+            <div class="work_hours">9:00 - 17:00</div>
+        </div>
+        <div class="dow">
+            <div class="dow_title">СР</div>
+            <div class="work_hours">9:00 - 17:00</div>
+        </div>
+        <div class="dow">
+            <div class="dow_title">ЧТ</div>
+            <div class="work_hours">9:00 - 17:00</div>
+        </div>
+        <div class="dow">
+            <div class="dow_title">ПТ</div>
+            <div class="work_hours">9:00 - 17:00</div>
+        </div>
+        <div class="dow">
+            <div class="dow_title">СБ</div>
+            <div class="work_hours">Выходной</div>
+        </div>
+        <div class="dow">
+            <div class="dow_title">ВС</div>
+            <div class="work_hours">Выходной</div>
+        </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Получаем текущий день недели (0 - воскресенье, 1 - понедельник, и т.д.)
+    const currentDay = new Date().getDay();
+
+    // Сопоставление индексов с порядком дней в расписании
+    const dayMapping = [6, 0, 1, 2, 3, 4, 5]; // JS getDay() -> Наши дни
+
+    // Определяем индекс текущего дня в разметке
+    const todayIndex = dayMapping[currentDay];
+
+    // Получаем все элементы с классом .dow
+    const days = document.querySelectorAll(".dow");
+
+    // Подсвечиваем текущий день
+    if (days[todayIndex]) {
+        days[todayIndex].style.color = "#C7B475"; // Золотой цвет
+    }
+});
+</script>
+
 
 {% endblock %}
