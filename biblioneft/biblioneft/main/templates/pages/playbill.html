@@ -3,7 +3,52 @@
 
 {% block content %}
 <div class="container">
-<h1 class="events_title">Афиша</h1>
-</div>
+<h1 class="sign_title">Афиша</h1>
+    <div class="plabill_container">
+        {% for event in events %}
+        <div class="swiper-slide">
+          <div class="event_card">
+            <a href="{% url 'event_detail' event.pk %}" class="event_title">{{ event.title }}</a>
+            <p class="event_type">{{ event.get_event_type_display }}</p>
+            <p class="event_date">{{ event.start_date|date:"d M Y H:i" }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <div class="swiper-slide">
+          <p>Нет мероприятий</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="filter">
+        <div class="categories">
+            <div>
+                <input type="checkbox" id="exhibition" name="exhibition"/>
+                <label for="exhibition">Выставки</label>
+            </div>
+            <div>
+                <input type="checkbox" id="masterclass" name="masterclass" />
+                <label for="masterclass">Мастер-классы</label>
+            </div>
+            <div>
+                <input type="checkbox" id="concert" name="concert" />
+                <label for="concert">Концерты</label>
+            </div>
+            <div>
+            <input type="checkbox" id="meetings" name="meetings" />
+            <label for="meetings">Встречи</label>
+            </div>
+        </div>
+        <div class="running">
+            <div>
+            <input type="radio" name="isrunning" id="isrunning">
+                <label for="isrunning">Текущие</label>
+            </div>
+            <div>
+            <input type="radio" name="archive" id="archive">
+                <label for="archive">Архив</label>
+            </div>
 
+        </div>
+    </div>
+</div>
 {% endblock %}

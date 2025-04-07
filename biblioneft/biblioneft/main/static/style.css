@@ -680,3 +680,20 @@ font-size: 18px;
 font-weight: 500;
 color: #C7B475;
 }
+
+.plabill_container {
+max-width: 1370px;
+}
+
+.filter label {
+display: block;
+}
+
+.categories, .running, .categories div, .running div {
+display: flex;
+gap: 10px;
+}
+
+.categories, .running {
+flex-direction: column;
+}
