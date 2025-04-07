@@ -685,6 +685,12 @@ color: #C7B475;
 max-width: 1370px;
 }
 
+.filter {
+display: flex;
+flex-direction: column;
+gap: 30px;
+}
+
 .filter label {
 display: block;
 }
