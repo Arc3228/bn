@@ -703,3 +703,7 @@ gap: 10px;
 .categories, .running {
 flex-direction: column;
 }
+
+.playbill_card {
+max-width: 320px;
+}

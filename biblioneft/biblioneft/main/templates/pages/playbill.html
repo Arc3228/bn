@@ -3,51 +3,63 @@
 
 {% block content %}
 <div class="container">
-<h1 class="sign_title">Афиша</h1>
-    <div class="plabill_container">
+    <h1 class="sign_title">Афиша</h1>
+        <div class="plabill_container">
         {% for event in events %}
         <div class="playbill_card">
-          <div class="event_card">
-            <a href="{% url 'event_detail' event.pk %}" class="event_title">{{ event.title }}</a>
-            <p class="event_type">{{ event.get_event_type_display }}</p>
-            <p class="event_date">{{ event.start_date|date:"d M Y H:i" }}</p>
-          </div>
+            <div class="event_card">
+                <a href="{% url 'event_detail' event.pk %}" class="event_title">{{ event.title }}</a>
+                <p class="event_type">{{ event.get_event_type_display }}</p>
+                <p class="event_date">{{ event.start_date|date:"d M Y H:i" }}</p>
+            </div>
         </div>
         {% empty %}
         <div class="playbill_card">
-          <p>Нет мероприятий</p>
+            <p>Нет мероприятий</p>
         </div>
         {% endfor %}
     </div>
-    <div class="filter">
-        <div class="categories">
-            <div>
-                <input type="checkbox" id="exhibition" name="exhibition"/>
-                <label for="exhibition">Выставки</label>
+    <!-- Добавляем форму для фильтров -->
+    <form method="get" action="{% url 'playbill' %}" class="filter-form">
+        <div class="filter">
+            <div class="categories">
+                <div>
+                    <input type="checkbox" id="concert" name="event_type" value="concert"
+                           {% if 'concert' in selected_types %}checked{% endif %}>
+                    <label for="concert">Концерты</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="workshop" name="event_type" value="workshop"
+                           {% if 'workshop' in selected_types %}checked{% endif %}>
+                    <label for="workshop">Мастер-классы</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="meetup" name="event_type" value="meetup"
+                           {% if 'meetup' in selected_types %}checked{% endif %}>
+                    <label for="meetup">Встречи</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="other" name="event_type" value="other"
+                           {% if 'other' in selected_types %}checked{% endif %}>
+                    <label for="other">Выставки</label>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" id="masterclass" name="masterclass" />
-                <label for="masterclass">Мастер-классы</label>
+            <div class="running">
+                <div>
+                    <input type="radio" name="status" id="current" value="current"
+                           {% if status_filter == 'current' %}checked{% endif %}>
+                    <label for="current">Текущие</label>
+                </div>
+                <div>
+                    <input type="radio" name="status" id="archive" value="archive"
+                           {% if status_filter == 'archive' %}checked{% endif %}>
+                    <label for="archive">Архив</label>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" id="concert" name="concert" />
-                <label for="concert">Концерты</label>
-            </div>
-            <div>
-            <input type="checkbox" id="meetings" name="meetings" />
-            <label for="meetings">Встречи</label>
-            </div>
+            <button type="submit" class="filter-button">Применить фильтры</button>
         </div>
-        <div class="running">
-            <div>
-            <input type="radio" name="isrunning" id="isrunning">
-                <label for="isrunning">Текущие</label>
-            </div>
-            <div>
-            <input type="radio" name="archive" id="archive">
-                <label for="archive">Архив</label>
-            </div>
-        </div>
-    </div>
+    </form>
+
+
 </div>
 {% endblock %}

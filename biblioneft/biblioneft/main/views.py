@@ -210,5 +210,35 @@ def sign_up(request):
 def schedule(request):
     return render(request, 'pages/schedule.html')
 
+
 def playbill(request):
-    return render(request, 'pages/playbill.html')
+    # Получаем выбранные типы мероприятий
+    selected_types = request.GET.getlist('event_type')
+
+    # Определяем статус фильтра (текущие/архив)
+    status_filter = request.GET.get('status', 'current')
+
+    # Базовый запрос
+    events = Event.objects.all()
+
+    # Фильтрация по типу мероприятия
+    if selected_types:
+        events = events.filter(event_type__in=selected_types)
+
+    # Фильтрация по статусу
+    now = timezone.now()
+    if status_filter == 'current':
+        events = events.filter(start_date__gte=now)
+    elif status_filter == 'archive':
+        events = events.filter(start_date__lt=now)
+
+    # Сортировка по дате
+    events = events.order_by('start_date')
+
+    context = {
+        'events': events,
+        'selected_types': selected_types,
+        'status_filter': status_filter,
+    }
+
+    return render(request, 'pages/playbill.html', context)
